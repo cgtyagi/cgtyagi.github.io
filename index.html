@@ -3,270 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Christina Tyagi — Neuroscience Researcher at Stanford University" />
+  <meta name="description" content="Christina Tyagi — Neuroscience Researcher, Stanford University" />
   <title>Christina Tyagi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ── TOKENS ── */
+    :root {
+      --bg:      #f9f8f6;
+      --white:   #ffffff;
+      --border:  #e8e6e1;
+      --ink:     #1a1a18;
+      --ink-2:   #4a4a46;
+      --ink-3:   #969690;
+      --green:   #3d6b50;
+      --green-bg:#edf3ef;
+      --nav-h:   58px;
+      --max:     740px;
+      --serif:   'Lora', Georgia, serif;
+      --sans:    'Inter', system-ui, sans-serif;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    ::selection { background: var(--green); color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(249,248,246,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      z-index: 100;
+      transition: border-color .2s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-inner {
+      max-width: calc(var(--max) + 4rem);
+      margin: 0 auto; padding: 0 2rem;
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-name { font-family: var(--serif); font-size: .95rem; font-weight: 500; }
+    .nav-links { display: flex; gap: .1rem; }
+    .nav-links a {
+      font-size: .78rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--ink-3); padding: .4rem .6rem; border-radius: 5px;
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); background: var(--green-bg); }
+
+    /* mobile nav */
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .25s, opacity .2s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.5rem; z-index: 99;
+      animation: fadeDown .15s ease;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: .55rem .5rem; font-size: .9rem; color: var(--ink-2); border-radius: 5px; transition: background .15s; }
+    .mobile-menu a:hover { background: var(--green-bg); color: var(--green); }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── PAGE WRAPPER ── */
+    main { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    .sec-label {
+      font-family: var(--sans); font-size: .7rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.25rem; display: block;
+    }
+    h2 { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+
+    /* ── HERO ── */
+    #about { padding-top: calc(var(--nav-h) + 3.5rem); padding-bottom: 4rem; }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 500; line-height: 1.1;
+      color: var(--ink); margin-bottom: 1.25rem;
+    }
+    .hero-name em { font-style: italic; color: var(--green); }
+    .hero-sub { font-size: .85rem; color: var(--ink-3); margin-bottom: 1.75rem; }
+    .hero-bio { font-size: 1rem; color: var(--ink-2); line-height: 1.85; font-weight: 300; max-width: 52ch; margin-bottom: 2rem; }
+    .hero-bio strong { color: var(--ink); font-weight: 500; }
+    .hero-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .875rem; font-weight: 500; color: var(--green); border: 1.5px solid var(--green); padding: .55rem 1.1rem; border-radius: 6px; transition: background .15s, color .15s; }
+    .hero-link:hover { background: var(--green); color: #fff; }
+
+    /* ── INTERESTS ── */
+    .interests { display: flex; flex-direction: column; gap: .75rem; }
+    .interest { display: flex; align-items: baseline; gap: .75rem; }
+    .interest-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; flex-shrink: 0; margin-top: .1rem; }
+    .interest p { font-size: .95rem; color: var(--ink-2); font-weight: 300; line-height: 1.6; }
+    .interest strong { color: var(--ink); font-weight: 500; }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .exp-item {}
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .25rem; flex-wrap: wrap; }
+    .exp-role { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); }
+    .exp-date { font-size: .78rem; color: var(--ink-3); white-space: nowrap; }
+    .exp-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
+    .exp-adv { font-size: .82rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
+    .exp-bullets { display: flex; flex-direction: column; gap: .5rem; }
+    .exp-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
+    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
+
+    /* ── PUBLICATIONS ── */
+    .pub-year { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-top: 2rem; margin-bottom: .85rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .pub-year:first-child { margin-top: 0; }
+    .pub-list { display: flex; flex-direction: column; gap: .85rem; }
+    .pub { display: flex; gap: .85rem; align-items: flex-start; }
+    .pub-badge {
+      font-size: .63rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+      padding: 2px 6px; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+      white-space: nowrap;
+    }
+    .b-prep { background: #fef3cd; color: #8a6200; }
+    .b-pre  { background: #fde8e4; color: #9b2c1a; }
+    .b-jnl  { background: var(--green-bg); color: var(--green); }
+    .pub-text { font-size: .88rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; }
+    .pub-text strong { color: var(--ink); font-weight: 500; }
+    .pub-text em { font-style: italic; }
+    .pub-doi { display: inline-block; margin-top: .2rem; font-size: .78rem; color: var(--ink-3); transition: color .15s; }
+    .pub-doi:hover { color: var(--green); }
+
+    /* ── PRESENTATIONS ── */
+    .pres-list { display: flex; flex-direction: column; }
+    .pres { display: flex; gap: 1.25rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+    .pres:last-child { border-bottom: none; }
+    .pres-yr { font-size: .8rem; color: var(--ink-3); flex-shrink: 0; padding-top: .15rem; width: 36px; }
+    .pres-body { flex: 1; }
+    .pres-venue { display: block; font-size: .72rem; color: var(--green); letter-spacing: .04em; margin-bottom: .3rem; }
+    .pres-text { font-size: .88rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; }
+    .pres-text strong { color: var(--ink); font-weight: 500; }
+    .pres-text em { font-style: italic; }
+    .pres-link { display: inline-block; margin-top: .25rem; font-size: .78rem; color: var(--ink-3); transition: color .15s; }
+    .pres-link:hover { color: var(--green); }
+
+    /* ── MENTORING ── */
+    .mentor-list { display: flex; flex-direction: column; gap: 2rem; }
+    .mentor-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .2rem; }
+    .mentor-role { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; }
+    .mentor-date { font-size: .78rem; color: var(--ink-3); }
+    .mentor-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .75rem; }
+    .mentor-bullets { display: flex; flex-direction: column; gap: .45rem; }
+    .mentor-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
+    .mentor-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
+
+    /* ── SKILLS ── */
+    .skill-rows { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; align-items: baseline; }
+    .skill-cat { font-size: .78rem; font-weight: 500; letter-spacing: .04em; color: var(--ink-3); }
+    .skill-items { font-size: .9rem; color: var(--ink-2); font-weight: 300; line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    .contact-text { font-size: .95rem; color: var(--ink-2); line-height: 1.8; font-weight: 300; max-width: 48ch; margin-bottom: 1.75rem; }
+    .contact-email { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--green); font-weight: 500; border-bottom: 1px solid var(--green); padding-bottom: .1rem; transition: opacity .15s; }
+    .contact-email:hover { opacity: .7; }
+
+    /* ── FOOTER ── */
+    footer { max-width: calc(var(--max) + 4rem); margin: 0 auto; padding: 2rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
+    footer p { font-size: .78rem; color: var(--ink-3); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 620px) {
+      main { padding: 0 1.25rem; }
+      .nav-inner { padding: 0 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .skill-row { grid-template-columns: 1fr; gap: .3rem; }
+      .pres { flex-direction: column; gap: .4rem; }
+      .pres-yr { width: auto; }
+    }
+
+  </style>
 </head>
 <body>
-  <header class="nav" id="nav">
+
+  <!-- NAV -->
+  <nav id="nav">
     <div class="nav-inner">
-      <a href="#about" class="nav-brand">
-        <span class="nav-initials">CT</span>
-        <span class="nav-name">Christina Tyagi</span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span class="nav-name">Christina Tyagi</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#presentations">Presentations</a>
+        <a href="#mentoring">Mentoring</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="nav-toggle" id="toggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
-      <nav>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#about">About</a></li>
-          <li><a href="#interests">Interests</a></li>
-          <li><a href="#experience">Research</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#presentations">Presentations</a></li>
-          <li><a href="#mentoring">Mentoring</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#cv">CV</a></li>
-          <li><a href="#contact" class="nav-cta">Contact</a></li>
-        </ul>
-      </nav>
     </div>
-  </header>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mob-link">About</a>
+    <a href="#research" class="mob-link">Research</a>
+    <a href="#publications" class="mob-link">Publications</a>
+    <a href="#presentations" class="mob-link">Presentations</a>
+    <a href="#mentoring" class="mob-link">Mentoring</a>
+    <a href="#skills" class="mob-link">Skills</a>
+    <a href="#contact" class="mob-link">Contact</a>
+  </div>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" id="about">
-      <div class="hero-blob" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <div class="hero-pill">Lab Manager &middot; Stanford University</div>
-          <h1 class="hero-name">Christina<br><em>Tyagi</em></h1>
-          <div class="hero-bio">
-            <p>I work at the <strong>Vision and Perception Neuroscience Lab</strong> at Stanford, designing and running fMRI studies to understand how the human brain develops category-selective visual representations &mdash; from infancy through adulthood.</p>
-            <p>I scan over 100 infants across their first year of life, and I love every minute of it.</p>
-          </div>
-          <div class="hero-chips">
-            <span class="chip">Neuroimaging</span>
-            <span class="chip">Developmental Neuroscience</span>
-            <span class="chip">Vision Science</span>
-            <span class="chip">fMRI &middot; MRI</span>
-          </div>
-          <div class="hero-actions">
-            <a href="mailto:ctyagi@stanford.edu" class="btn btn-primary">Say hello &#x2709;</a>
-            <a href="#publications" class="btn btn-ghost">View publications &rarr;</a>
-          </div>
-        </div>
-        <aside class="hero-aside">
-          <div class="stat-card">
-            <div class="stat"><span class="stat-n">100+</span><span class="stat-l">Infant subjects scanned</span></div>
-            <div class="stat-div"></div>
-            <div class="stat"><span class="stat-n">7</span><span class="stat-l">Publications &amp; manuscripts</span></div>
-            <div class="stat-div"></div>
-            <div class="stat"><span class="stat-n">2+</span><span class="stat-l">Years at Stanford</span></div>
-          </div>
-          <div class="affil-card">
-            <span class="affil-tag">Currently at</span>
-            <strong>Stanford University</strong>
-            <span>Vision &amp; Perception Neuroscience Lab</span>
-            <span class="affil-adv">Advisor: Dr. Kalanit Grill-Spector</span>
-            <a href="mailto:ctyagi@stanford.edu" class="affil-email">ctyagi@stanford.edu</a>
-          </div>
-          <div class="edu-card">
-            <span class="edu-deg">B.S. Cognitive Science</span>
-            <span class="edu-sub">Neuroscience Specialization &middot; Minor: History</span>
-            <span class="edu-school">UC San Diego &middot; GPA 3.92 &middot; Cum Laude</span>
-          </div>
-        </aside>
-      </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h1 class="hero-name">Christina <em>Tyagi</em></h1>
+      <p class="hero-sub">Lab Manager · Vision & Perception Neuroscience Lab · Stanford University</p>
+      <p class="hero-bio">
+        I study how the human brain develops category-selective visual representations — from the first months of life through adulthood. Working in Dr. <strong>Kalanit Grill-Spector</strong>'s lab at Stanford, I design and run fMRI studies, manage infant scanning, and analyze developmental trajectories of the ventral temporal cortex.
+      </p>
+      <a href="mailto:ctyagi@stanford.edu" class="hero-link">ctyagi@stanford.edu</a>
     </section>
 
     <!-- RESEARCH INTERESTS -->
-    <section class="section alt reveal" id="interests">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">01</span><h2>Research Interests</h2></div>
-        <div class="interests-grid">
-          <div class="int-card"><div class="int-icon">&#x1F9E0;</div><h3>Neuroimaging</h3><p>Leveraging structural and functional MRI to map the developing human brain with high spatial resolution and precision.</p></div>
-          <div class="int-card"><div class="int-icon">&#x1F476;</div><h3>Developmental Neuroscience</h3><p>Tracing neurodevelopmental trajectories from infancy to adulthood to understand how cortical organization emerges over time.</p></div>
-          <div class="int-card"><div class="int-icon">&#x1F441;&#xFE0F;</div><h3>Vision Science</h3><p>Characterizing category-selective regions in the ventral temporal cortex and how visual representations are functionally organized.</p></div>
-          <div class="int-card"><div class="int-icon">&#x1F4AD;</div><h3>Cognition</h3><p>Investigating the neural substrates of higher-order cognitive processes and how the brain encodes abstract visual categories.</p></div>
+    <section id="interests" class="reveal">
+      <span class="sec-label">Research Interests</span>
+      <div class="interests">
+        <div class="interest">
+          <div class="interest-dot"></div>
+          <p><strong>Neuroimaging</strong> — structural and functional MRI to map the developing brain</p>
+        </div>
+        <div class="interest">
+          <div class="interest-dot"></div>
+          <p><strong>Developmental neuroscience</strong> — cortical organization from infancy to adulthood</p>
+        </div>
+        <div class="interest">
+          <div class="interest-dot"></div>
+          <p><strong>Vision science</strong> — category-selective regions of the ventral temporal cortex</p>
+        </div>
+        <div class="interest">
+          <div class="interest-dot"></div>
+          <p><strong>Cognition</strong> — how the brain encodes abstract visual categories</p>
         </div>
       </div>
     </section>
 
     <!-- RESEARCH EXPERIENCE -->
-    <section class="section reveal" id="experience">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">02</span><h2>Research Experience</h2></div>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-meta"><span class="tl-date">Feb 2023 &ndash; Present</span><span class="tl-loc">Stanford, CA</span></div>
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <h3>Lab Manager</h3>
-              <span class="tl-org">Vision and Perception Neuroscience Lab, Stanford University</span>
-              <span class="tl-adv">Advisor: Dr. Kalanit Grill-Spector</span>
-              <ul>
-                <li>Design and implement fMRI-MRI studies investigating category-selective activations in the ventral temporal cortex in infancy.</li>
-                <li>Characterize functional development of category-selective regions from infancy to adulthood.</li>
-                <li>Lead participant recruitment and screening across infant, child, and adult populations.</li>
-                <li>Coordinate MRI &amp; fMRI scans and analyze data from 100+ infants in their first year of life.</li>
-              </ul>
-            </div>
+    <section id="research" class="reveal">
+      <span class="sec-label">Research Experience</span>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Lab Manager</span>
+            <span class="exp-date">Feb 2023 – Present</span>
           </div>
-          <div class="tl-item">
-            <div class="tl-meta"><span class="tl-date">Oct 2021 &ndash; Jan 2023</span><span class="tl-loc">Encinitas, CA</span></div>
-            <div class="tl-dot"></div>
-            <div class="tl-card">
-              <h3>Research Intern</h3>
-              <span class="tl-org">American Institute for Behavioral Research and Technology</span>
-              <ul>
-                <li>Studied how social media feed bias affects political opinions and voting preferences of undecided voters; contributed to literature review, statistical analysis, and manuscript preparation.</li>
-                <li>Developed participant recruitment campaigns for online behavioral surveys.</li>
-              </ul>
-            </div>
-          </div>
+          <div class="exp-org">Vision & Perception Neuroscience Lab, Stanford University</div>
+          <div class="exp-adv">Advisor: Dr. Kalanit Grill-Spector</div>
+          <ul class="exp-bullets">
+            <li>Design and implement fMRI-MRI studies investigating category-selective activations in the ventral temporal cortex in infancy.</li>
+            <li>Characterize functional development of category-selective regions from infancy to adulthood.</li>
+            <li>Lead participant recruitment and coordinate MRI & fMRI scans across infant, child, and adult populations.</li>
+            <li>Collect, preprocess, and analyze data from 100+ infants across their first year of life.</li>
+          </ul>
         </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Research Intern</span>
+            <span class="exp-date">Oct 2021 – Jan 2023</span>
+          </div>
+          <div class="exp-org">American Institute for Behavioral Research and Technology</div>
+          <ul class="exp-bullets">
+            <li>Studied how social media feed bias affects voting preferences of undecided voters; assisted with literature review, statistical analysis, and manuscript preparation.</li>
+            <li>Developed participant recruitment campaigns for online behavioral surveys.</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
     <!-- PUBLICATIONS -->
-    <section class="section alt reveal" id="publications">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">03</span><h2>Publications</h2></div>
+    <section id="publications" class="reveal">
+      <span class="sec-label">Publications</span>
 
-        <div class="pub-grp">
-          <h3 class="pub-grp-lbl">Manuscripts in Preparation</h3>
-          <div class="pub-list">
-            <div class="pub-item"><span class="badge bprep">In Prep</span><div class="pub-body"><p class="pub-au"><strong>Tyagi, C.</strong>, Natu, V., Ortiz, D., Horenziak, J., &amp; Grill-Spector, K.</p><p class="pub-ti">Development of category selectivity across the early lifespan in human ventral temporal cortex.</p></div></div>
-            <div class="pub-item"><span class="badge bprep">In Prep</span><div class="pub-body"><p class="pub-au">Natu, V., <strong>Tyagi, C.</strong>, Yan, X., Kubota, E., et al.</p><p class="pub-ti">Microstructure in putamen is linked to cortico-striatal connections along its anterior-posterior axis during development.</p></div></div>
-            <div class="pub-item"><span class="badge bprep">In Prep</span><div class="pub-body"><p class="pub-au">Bacmeister, C., Natu, V., Tung, S., <strong>Tyagi, C.</strong>, et al.</p><p class="pub-ti">Investigation of myelin development in human visual cortex with qMRI and immunohistochemistry.</p></div></div>
-            <div class="pub-item"><span class="badge bprep">In Prep</span><div class="pub-body"><p class="pub-au">Natu, V., Bacmeister, C., Xiaoqian, Y., <strong>Tyagi, C.</strong>, et al.</p><p class="pub-ti">Distribution of iron and myelin in basal ganglia and primary sensory cortices from infancy to adulthood.</p></div></div>
+      <div class="pub-year">In Preparation</div>
+      <div class="pub-list">
+        <div class="pub">
+          <span class="pub-badge b-prep">In Prep</span>
+          <div class="pub-text"><strong>Tyagi, C.</strong>, Natu, V., Ortiz, D., Horenziak, J., & Grill-Spector, K. <em>Development of category selectivity across the early lifespan in human ventral temporal cortex.</em></div>
+        </div>
+        <div class="pub">
+          <span class="pub-badge b-prep">In Prep</span>
+          <div class="pub-text">Natu, V., <strong>Tyagi, C.</strong>, Yan, X., Kubota, E., et al. <em>Microstructure in putamen is linked to cortico-striatal connections along its anterior-posterior axis during development.</em></div>
+        </div>
+        <div class="pub">
+          <span class="pub-badge b-prep">In Prep</span>
+          <div class="pub-text">Bacmeister, C., Natu, V., Tung, S., <strong>Tyagi, C.</strong>, et al. <em>Investigation of myelin development in human visual cortex with qMRI and immunohistochemistry.</em></div>
+        </div>
+        <div class="pub">
+          <span class="pub-badge b-prep">In Prep</span>
+          <div class="pub-text">Natu, V., Bacmeister, C., Xiaoqian, Y., <strong>Tyagi, C.</strong>, et al. <em>Distribution of iron and myelin in basal ganglia and primary sensory cortices from infancy to adulthood.</em></div>
+        </div>
+      </div>
+
+      <div class="pub-year">2025</div>
+      <div class="pub-list">
+        <div class="pub">
+          <span class="pub-badge b-pre">bioRxiv</span>
+          <div class="pub-text">
+            Perez, K., Allen, A., <strong>Tyagi, C.</strong>, et al. <em>Hierarchical microstructural tissue growth of the white and gray matter of human visual cortex during the first year of life.</em><br>
+            <a href="https://doi.org/10.1101/2025.06.20.660718" target="_blank" class="pub-doi">doi.org/10.1101/2025.06.20.660718 ↗</a>
           </div>
         </div>
-
-        <div class="pub-grp">
-          <h3 class="pub-grp-lbl">2025</h3>
-          <div class="pub-list">
-            <div class="pub-item"><span class="badge bpre">bioRxiv</span><div class="pub-body"><p class="pub-au">Perez, K., Allen, A., <strong>Tyagi, C.</strong>, et al.</p><p class="pub-ti">Hierarchical microstructural tissue growth of the white and gray matter of human visual cortex during the first year of life.</p><a href="https://doi.org/10.1101/2025.06.20.660718" target="_blank" class="pub-doi">10.1101/2025.06.20.660718 &#x2197;</a></div></div>
-            <div class="pub-item"><span class="badge bpre">bioRxiv</span><div class="pub-body"><p class="pub-au">Tung, S., Xiaoqian, Y., Fascendini, B., <strong>Tyagi, C.</strong>, et al.</p><p class="pub-ti">How infant brains fold: Sulcal deepening is linked to development of sulcal span, thickness, curvature, and microstructure.</p><a href="https://doi.org/10.1101/2025.04.18.649604" target="_blank" class="pub-doi">10.1101/2025.04.18.649604 &#x2197;</a></div></div>
-            <div class="pub-item"><span class="badge bjnl">Nat. Hum. Behav.</span><div class="pub-body"><p class="pub-au">Kubota, E., Yan, X., Tung, S., Fascendini, B., <strong>Tyagi, C.</strong>, et al.</p><p class="pub-ti">White matter connections of human ventral temporal cortex are organized by cytoarchitecture, eccentricity, and category-selectivity from birth.</p><a href="https://doi.org/10.1038/s41562-025-02116-6" target="_blank" class="pub-doi">10.1038/s41562-025-02116-6 &#x2197;</a></div></div>
+        <div class="pub">
+          <span class="pub-badge b-pre">bioRxiv</span>
+          <div class="pub-text">
+            Tung, S., Xiaoqian, Y., Fascendini, B., <strong>Tyagi, C.</strong>, et al. <em>How infant brains fold: Sulcal deepening is linked to development of sulcal span, thickness, curvature, and microstructure.</em><br>
+            <a href="https://doi.org/10.1101/2025.04.18.649604" target="_blank" class="pub-doi">doi.org/10.1101/2025.04.18.649604 ↗</a>
           </div>
         </div>
-
-        <div class="pub-grp">
-          <h3 class="pub-grp-lbl">2023</h3>
-          <div class="pub-list">
-            <div class="pub-item"><span class="badge bjnl">PLOS ONE</span><div class="pub-body"><p class="pub-au">Epstein, R., <strong>Tyagi, C.</strong>, Wang, H.</p><p class="pub-ti">What would happen if Twitter sent consequential messages to only a strategically important subset of users? A quantification of the Targeted Messaging Effect (TME).</p><a href="https://doi.org/10.1371/journal.pone.0284495" target="_blank" class="pub-doi">10.1371/journal.pone.0284495 &#x2197;</a></div></div>
+        <div class="pub">
+          <span class="pub-badge b-jnl">Nat. Hum. Behav.</span>
+          <div class="pub-text">
+            Kubota, E., Yan, X., Tung, S., Fascendini, B., <strong>Tyagi, C.</strong>, et al. <em>White matter connections of human ventral temporal cortex are organized by cytoarchitecture, eccentricity, and category-selectivity from birth.</em><br>
+            <a href="https://doi.org/10.1038/s41562-025-02116-6" target="_blank" class="pub-doi">doi.org/10.1038/s41562-025-02116-6 ↗</a>
           </div>
         </div>
       </div>
+
+      <div class="pub-year">2023</div>
+      <div class="pub-list">
+        <div class="pub">
+          <span class="pub-badge b-jnl">PLOS ONE</span>
+          <div class="pub-text">
+            Epstein, R., <strong>Tyagi, C.</strong>, Wang, H. <em>What would happen if Twitter sent consequential messages to only a strategically important subset of users? A quantification of the Targeted Messaging Effect (TME).</em> PLOS ONE, 18(7), e0284495.<br>
+            <a href="https://doi.org/10.1371/journal.pone.0284495" target="_blank" class="pub-doi">doi.org/10.1371/journal.pone.0284495 ↗</a>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- PRESENTATIONS -->
-    <section class="section reveal" id="presentations">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">04</span><h2>Presentations &amp; Posters</h2></div>
-        <div class="pres-list">
-          <div class="pres-item"><span class="pres-yr">2025</span><div class="pres-body"><span class="pres-type">Poster &middot; Society for Neuroscience, San Diego, CA</span><p><strong>Tyagi, C.</strong> [Presenter], Natu, V., Ortiz, D., Horenziak, J., &amp; Grill-Spector, K. &mdash; <em>Assessing visual category representations in infant visual cortex using fMRI.</em></p><a href="https://www.abstractsonline.com/pp8/#!/21171/presentation/29106" target="_blank" class="pres-link">View abstract &#x2197;</a></div></div>
-          <div class="pres-item"><span class="pres-yr">2025</span><div class="pres-body"><span class="pres-type">Nanosymposium &middot; Society for Neuroscience, San Diego, CA</span><p>Natu, V. [Presenter], Yan, X., <strong>Tyagi, C.</strong>, Kubota, E., et al. &mdash; <em>Mapping microstructural gradients of the human putamen from infancy to adulthood.</em></p><a href="https://www.abstractsonline.com/pp8/#!/21171/presentation/31190" target="_blank" class="pres-link">View abstract &#x2197;</a></div></div>
-          <div class="pres-item"><span class="pres-yr">2025</span><div class="pres-body"><span class="pres-type">Poster &middot; Organization for Human Brain Mapping, Brisbane, Australia</span><p>Bacmeister, C. [Presenter], Natu, V., Tung, S., <strong>Tyagi, C.</strong>, et al. &mdash; <em>Investigation of myelin development in human visual cortex with qMRI and immunohistochemistry.</em></p></div></div>
-          <div class="pres-item"><span class="pres-yr">2025</span><div class="pres-body"><span class="pres-type">Poster &middot; Organization for Human Brain Mapping, Brisbane, Australia</span><p>Natu, V. [Presenter], Bacmeister, C., Xiaoqian, Y., <strong>Tyagi, C.</strong>, et al. &mdash; <em>Distribution of iron and myelin in basal ganglia and primary sensory cortices from infancy to adulthood.</em></p></div></div>
-          <div class="pres-item"><span class="pres-yr">2024</span><div class="pres-body"><span class="pres-type">Poster &middot; Society for Neuroscience, Chicago, IL</span><p>Rispoli, B. [Presenter], <strong>Tyagi, C.</strong>, et al. &mdash; <em>Dynamic properties of stimuli drive differential responses in category-selectivity between lateral and ventral cortex.</em></p><a href="https://www.abstractsonline.com/pp8/#!/20433/presentation/22732" target="_blank" class="pres-link">View abstract &#x2197;</a></div></div>
-          <div class="pres-item"><span class="pres-yr">2024</span><div class="pres-body"><span class="pres-type">Poster &middot; Organization for Human Brain Mapping, Seoul, South Korea</span><p>Kubota, E. [Presenter], Yan, X., Tung, S., Fascendini, B., <strong>Tyagi, C.</strong>, et al. &mdash; <em>White matter connectivity is organized by cytoarchitecture from birth.</em></p><a href="https://ww6.aievolution.com/hbm2401/index.cfm?do=abs.viewAbs&abs=3334" target="_blank" class="pres-link">View abstract &#x2197;</a></div></div>
-          <div class="pres-item"><span class="pres-yr">2024</span><div class="pres-body"><span class="pres-type">Poster &middot; Organization for Human Brain Mapping, Seoul, South Korea</span><p>Tung, S. [Presenter], Xiaoqian, Y., Fascendini, B., <strong>Tyagi, C.</strong>, et al. &mdash; <em>Structural development of early emerging sulcal folds during the first year of human life.</em></p><a href="https://ww6.aievolution.com/hbm2401/Abstracts/viewAbs?abs=1954" target="_blank" class="pres-link">View abstract &#x2197;</a></div></div>
+    <section id="presentations" class="reveal">
+      <span class="sec-label">Presentations & Posters</span>
+      <div class="pres-list">
+
+        <div class="pres">
+          <span class="pres-yr">2025</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · Society for Neuroscience, San Diego</span>
+            <p class="pres-text"><strong>Tyagi, C.</strong> [Presenter], Natu, V., Ortiz, D., Horenziak, J., & Grill-Spector, K. — <em>Assessing visual category representations in infant visual cortex using fMRI.</em></p>
+            <a href="https://www.abstractsonline.com/pp8/#!/21171/presentation/29106" target="_blank" class="pres-link">Abstract ↗</a>
+          </div>
         </div>
+
+        <div class="pres">
+          <span class="pres-yr">2025</span>
+          <div class="pres-body">
+            <span class="pres-venue">Nanosymposium · Society for Neuroscience, San Diego</span>
+            <p class="pres-text">Natu, V. [Presenter], Yan, X., <strong>Tyagi, C.</strong>, Kubota, E., et al. — <em>Mapping microstructural gradients of the human putamen from infancy to adulthood.</em></p>
+            <a href="https://www.abstractsonline.com/pp8/#!/21171/presentation/31190" target="_blank" class="pres-link">Abstract ↗</a>
+          </div>
+        </div>
+
+        <div class="pres">
+          <span class="pres-yr">2025</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · OHBM, Brisbane</span>
+            <p class="pres-text">Bacmeister, C. [Presenter], Natu, V., Tung, S., <strong>Tyagi, C.</strong>, et al. — <em>Investigation of myelin development in human visual cortex with qMRI and immunohistochemistry.</em></p>
+          </div>
+        </div>
+
+        <div class="pres">
+          <span class="pres-yr">2025</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · OHBM, Brisbane</span>
+            <p class="pres-text">Natu, V. [Presenter], Bacmeister, C., Xiaoqian, Y., <strong>Tyagi, C.</strong>, et al. — <em>Distribution of iron and myelin in basal ganglia and primary sensory cortices from infancy to adulthood.</em></p>
+          </div>
+        </div>
+
+        <div class="pres">
+          <span class="pres-yr">2024</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · Society for Neuroscience, Chicago</span>
+            <p class="pres-text">Rispoli, B. [Presenter], <strong>Tyagi, C.</strong>, et al. — <em>Dynamic properties of stimuli drive differential responses in category-selectivity between lateral and ventral cortex.</em></p>
+            <a href="https://www.abstractsonline.com/pp8/#!/20433/presentation/22732" target="_blank" class="pres-link">Abstract ↗</a>
+          </div>
+        </div>
+
+        <div class="pres">
+          <span class="pres-yr">2024</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · OHBM, Seoul</span>
+            <p class="pres-text">Kubota, E. [Presenter], Yan, X., Tung, S., Fascendini, B., <strong>Tyagi, C.</strong>, et al. — <em>White matter connectivity is organized by cytoarchitecture from birth.</em></p>
+            <a href="https://ww6.aievolution.com/hbm2401/index.cfm?do=abs.viewAbs&abs=3334" target="_blank" class="pres-link">Abstract ↗</a>
+          </div>
+        </div>
+
+        <div class="pres">
+          <span class="pres-yr">2024</span>
+          <div class="pres-body">
+            <span class="pres-venue">Poster · OHBM, Seoul</span>
+            <p class="pres-text">Tung, S. [Presenter], Xiaoqian, Y., Fascendini, B., <strong>Tyagi, C.</strong>, et al. — <em>Structural development of early emerging sulcal folds during the first year of human life.</em></p>
+            <a href="https://ww6.aievolution.com/hbm2401/Abstracts/viewAbs?abs=1954" target="_blank" class="pres-link">Abstract ↗</a>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- MENTORING -->
-    <section class="section alt reveal" id="mentoring">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">05</span><h2>Mentoring &amp; Teaching</h2></div>
-        <div class="mentor-grid">
-          <div class="mentor-card">
-            <div class="mentor-top"><div><h3>Research Supervisor</h3><span class="mentor-prog">Psych-Summer Research Program &amp; NeURO Fellowship Program</span><span class="mentor-inst">Stanford University</span></div><span class="mentor-date">Summer 2023 &amp; 2024</span></div>
-            <ul><li>Mentored three undergraduate students across two summers, guiding independent research projects.</li><li>Trained mentees to assist with infant MRI &amp; fMRI scanning sessions.</li><li>Taught cortical surface ROI delineation and anatomical region identification.</li><li>Led literature reviews and supported scientific thinking development.</li></ul>
+    <section id="mentoring" class="reveal">
+      <span class="sec-label">Mentoring & Teaching</span>
+      <div class="mentor-list">
+
+        <div>
+          <div class="mentor-header">
+            <span class="mentor-role">Research Supervisor</span>
+            <span class="mentor-date">Summer 2023 & 2024</span>
           </div>
-          <div class="mentor-card">
-            <div class="mentor-top"><div><h3>Diversity Committee Member</h3><span class="mentor-prog">Stanford Psychology Diversity Committee</span><span class="mentor-inst">Stanford University</span></div><span class="mentor-date">May 2025 &ndash; Present</span></div>
-            <ul><li>Coordinated outreach and created promotional media for the annual Paths to PhD event.</li><li>Participated in Q&amp;A panels to support prospective PhD applicants from diverse backgrounds.</li></ul>
-          </div>
+          <div class="mentor-org">Psych-Summer Research Program & NeURO Fellowship, Stanford</div>
+          <ul class="mentor-bullets">
+            <li>Mentored three undergraduates, guiding independent research projects over two summers.</li>
+            <li>Trained mentees on infant MRI/fMRI scanning and cortical surface ROI delineation.</li>
+            <li>Led literature reviews and supported scientific development.</li>
+          </ul>
         </div>
+
+        <div>
+          <div class="mentor-header">
+            <span class="mentor-role">Diversity Committee Member</span>
+            <span class="mentor-date">May 2025 – Present</span>
+          </div>
+          <div class="mentor-org">Stanford Psychology Diversity Committee</div>
+          <ul class="mentor-bullets">
+            <li>Coordinated outreach for the annual Paths to PhD event and participated in Q&A panels.</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
     <!-- SKILLS -->
-    <section class="section reveal" id="skills">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">06</span><h2>Skills</h2></div>
-        <div class="skills-grid">
-          <div class="skill-block"><h3>Data Collection</h3><div class="stags"><span>MRI / fMRI</span><span>Behavioral Testing</span><span>Infant &amp; Child Participants</span></div></div>
-          <div class="skill-block"><h3>Programming &amp; Tools</h3><div class="stags"><span>Python</span><span>pandas</span><span>numpy</span><span>matplotlib</span><span>MATLAB</span><span>Bash / Linux</span><span>Freesurfer</span><span>MrVista</span><span>Flywheel</span></div></div>
-          <div class="skill-block"><h3>Data Processing</h3><div class="stags"><span>Cortical Segmentation</span><span>Surface Reconstruction</span><span>Motion Correction</span><span>Time Course Analysis</span></div></div>
-          <div class="skill-block"><h3>Experimental Design</h3><div class="stags"><span>PsychoPy</span><span>Psychtoolbox</span><span>Stimuli Creation</span><span>Piloting &amp; Troubleshooting</span></div></div>
-          <div class="skill-block"><h3>Mathematics</h3><div class="stags"><span>Linear Algebra</span><span>Multivariable Calculus</span><span>Statistics</span></div></div>
-          <div class="skill-block"><h3>Professional</h3><div class="stags"><span>IRB Protocols</span><span>HIPAA</span><span>CITI Training</span><span>Scientific Writing</span><span>Participant Recruitment</span><span>Mentoring</span></div></div>
+    <section id="skills" class="reveal">
+      <span class="sec-label">Skills</span>
+      <div class="skill-rows">
+        <div class="skill-row">
+          <span class="skill-cat">Data collection</span>
+          <span class="skill-items">MRI/fMRI, behavioral testing, infant & child participants</span>
         </div>
-      </div>
-    </section>
-
-    <!-- CV -->
-    <section class="section alt reveal" id="cv">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">07</span><h2>Curriculum Vitae</h2></div>
-        <div class="cv-layout">
-          <div class="cv-info">
-            <p>My full CV covers education, research positions, publications, presentations, and skills in complete detail.</p>
-            <div class="cv-edu-block">
-              <h3>Education</h3>
-              <div class="cv-edu-item">
-                <strong>B.S. Cognitive Science, Neuroscience Specialization</strong>
-                <span>Minor in History</span>
-                <span class="cv-school">University of California, San Diego</span>
-                <div class="honor-pills">
-                  <span>GPA 3.92</span><span>Cum Laude</span><span>Provost Honors &mdash; All Quarters</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cv-dl-col">
-            <div class="cv-card">
-              <div class="cv-icon">&#x1F4C4;</div>
-              <p class="cv-card-title">Full CV</p>
-              <p class="cv-card-sub">PDF &middot; Updated 2025</p>
-              <a href="Tyagi_CV.pdf" download class="btn btn-primary">&#x2193; Download CV</a>
-              <p class="cv-hint">Place <code>Tyagi_CV.pdf</code> in the same folder as <code>index.html</code>.</p>
-            </div>
-          </div>
+        <div class="skill-row">
+          <span class="skill-cat">Programming</span>
+          <span class="skill-items">Python (pandas, numpy, matplotlib), MATLAB, Bash/Linux</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Software</span>
+          <span class="skill-items">Freesurfer, MrVista, Flywheel, PsychoPy, Psychtoolbox</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Analysis</span>
+          <span class="skill-items">Cortical segmentation, surface reconstruction, motion correction, time course analysis</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Compliance</span>
+          <span class="skill-items">IRB protocols, HIPAA, CITI training</span>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section reveal" id="contact">
-      <div class="container">
-        <div class="sec-hdr"><span class="sec-num">08</span><h2>Contact</h2></div>
-        <div class="contact-layout">
-          <p class="contact-intro">Happy to connect with researchers, collaborators, or students interested in developmental cognitive neuroscience. Don&rsquo;t hesitate to reach out!</p>
-          <div class="contact-cards">
-            <a href="mailto:ctyagi@stanford.edu" class="cc cc-link"><span class="cc-icon">&#x2709;&#xFE0F;</span><div><span class="cc-lbl">Email</span><span class="cc-val">christinatyagi@gmail.com</span></div></a>
-            <div class="cc"><span class="cc-icon">&#x1F4CD;</span><div><span class="cc-lbl">Location</span><span class="cc-val">Stanford University, Stanford, CA</span></div></div>
-          </div>
-        </div>
-      </div>
+    <section id="contact" class="reveal">
+      <span class="sec-label">Contact</span>
+      <p class="contact-text">Feel free to reach out about research, collaboration, or anything related to developmental cognitive neuroscience.</p>
+      <a href="mailto:ctyagi@stanford.edu" class="contact-email">ctyagi@stanford.edu</a>
     </section>
+
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>&copy; 2025 Christina Tyagi</span>
-      <span>Vision &amp; Perception Neuroscience Lab &middot; Stanford University</span>
-    </div>
+  <footer>
+    <p>Christina Tyagi · Stanford University</p>
+    <p>© 2025</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Nav scroll shadow
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+    // Active nav link
+    const sections = document.querySelectorAll('main section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => io.observe(s));
+
+    // Mobile menu
+    const toggle = document.getElementById('toggle');
+    const menu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+
+    // Reveal on scroll
+    const revealIO = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+  </script>
+
 </body>
 </html>
