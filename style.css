@@ -344,13 +344,60 @@ h1,h2,h3{font-family:var(--f-serif);font-weight:500;line-height:1.15}
 /* ── ANIMATIONS ─────────────────────────────────────────────── */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ------Images */
+/* ── IMAGES ──────────────────────────────────────────────────── */
+
+/* Inline image — flows naturally within section content */
 .section-image {
   width: 100%;
   max-width: 520px;
-  border-radius: 10px;
-  margin: 1.5rem 0;
+  border-radius: var(--r);
   border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(0,0,0,.06);
+  transition: border-color var(--t), box-shadow var(--t), transform var(--t);
+  display: block;
+}
+.section-image:hover {
+  border-color: var(--border-hi);
+  box-shadow: 0 6px 28px rgba(0,0,0,.09);
+  transform: translateY(-2px);
+}
+
+/* Wrapper: floats image inline with surrounding text */
+.section-image-wrap {
+  float: right;
+  margin: 0 0 var(--sp-6) var(--sp-8);
+  max-width: 340px;
+  width: 100%;
+}
+.section-image-wrap .section-image {
+  max-width: 100%;
+}
+.section-image-caption {
+  font-size: .75rem;
+  color: var(--ink-3);
+  font-family: var(--f-mono);
+  letter-spacing: .02em;
+  margin-top: var(--sp-2);
+  text-align: center;
+}
+
+/* Full-width image block — useful for hero-style banners inside sections */
+.section-image-full {
+  width: 100%;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(0,0,0,.06);
+  display: block;
+  margin: var(--sp-8) 0;
+}
+
+/* Responsive: stack image above content on narrow screens */
+@media(max-width:680px){
+  .section-image-wrap {
+    float: none;
+    margin: 0 0 var(--sp-6) 0;
+    max-width: 100%;
+  }
 }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
