@@ -10,26 +10,29 @@
 /* ── VARIABLES ──────────────────────────────────────────────── */
 :root {
   /* Palette — soft sage + warm ivory */
-  --bg:         #fafaf8;
-  --bg-alt:     #f3f2ef;
-  --white:      #ffffff;
-  --border:     #e5e4df;
-  --border-hi:  #ccccc4;
-
-  --ink:        #1c1c1a;
-  --ink-2:      #4a4a46;
-  --ink-3:      #8a8a84;
-
-  --sage:       #4a7c59;       /* primary accent — soft forest green */
-  --sage-light: #6a9e77;
-  --sage-pale:  #edf4ef;
-  --sage-pale2: #dceee2;
-
-  --rose:       #c0625a;       /* secondary warm accent */
-  --rose-pale:  #faecea;
-
-  --gold:       #b5853a;
-  --gold-pale:  #fdf4e3;
+   /* Palette — soft blush pink */
+   --bg:         #fdfafb;   /* very light pink-tinted white */
+   --bg-alt:     #f6f1f3;
+   --white:      #ffffff;
+   --border:     #eadfe3;
+   --border-hi:  #d8c7cd;
+   
+   --ink:        #1c1c1a;
+   --ink-2:      #4a4a46;
+   --ink-3:      #8a8a84;
+   
+   /* Primary Accent (replacing sage) */
+   --sage: #e8a0b4;
+   --sage-light: #f2c6d3;
+   --sage-pale:  #fdecef;
+   --sage-pale2: #f8dce3;
+   
+   /* Secondary Accent */
+   --rose:       #b84f6f;   /* deeper dusty rose */
+   --rose-pale:  #fae6eb;
+   
+   --gold:       #b5853a;
+   --gold-pale:  #fdf4e3;
 
   /* Fonts */
   --f-serif:  'Lora', Georgia, serif;
