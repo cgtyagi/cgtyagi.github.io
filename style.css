@@ -349,7 +349,7 @@ h1,h2,h3{font-family:var(--f-serif);font-weight:500;line-height:1.15}
 /* Inline image — flows naturally within section content */
 .section-image {
   width: 100%;
-  max-width: 520px;
+  max-width: 300px;
   border-radius: var(--r);
   border: 1px solid var(--border);
   box-shadow: 0 2px 16px rgba(0,0,0,.06);
@@ -366,7 +366,7 @@ h1,h2,h3{font-family:var(--f-serif);font-weight:500;line-height:1.15}
 .section-image-wrap {
   float: right;
   margin: 0 0 var(--sp-6) var(--sp-8);
-  max-width: 340px;
+  max-width: 220px;
   width: 100%;
 }
 .section-image-wrap .section-image {
@@ -399,6 +399,7 @@ h1,h2,h3{font-family:var(--f-serif);font-weight:500;line-height:1.15}
     max-width: 100%;
   }
 }
+
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:900px){
