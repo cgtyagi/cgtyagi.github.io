@@ -22,8 +22,8 @@
    --ink-3:      #8a8a84;
    
    /* Primary Accent (replacing sage) */
-   --sage: #e8a0b4;
-   --sage-light: #f2c6d3;
+   --sage:       #d16d8a;   /* main pink */
+   --sage-light: #e89ab0;
    --sage-pale:  #fdecef;
    --sage-pale2: #f8dce3;
    
