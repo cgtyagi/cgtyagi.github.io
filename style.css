@@ -344,7 +344,7 @@ h1,h2,h3{font-family:var(--f-serif);font-weight:500;line-height:1.15}
 /* ── ANIMATIONS ─────────────────────────────────────────────── */
 @keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ------Images
+/* ------Images */
 .section-image {
   width: 100%;
   max-width: 520px;
