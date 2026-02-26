@@ -28,11 +28,11 @@
    --sage-pale2: #f8dce3;
    
    /* Secondary Accent */
-   --rose:       #b84f6f;   /* deeper dusty rose */
-   --rose-pale:  #fae6eb;
+   --rose:       #7C6BAD;   /* medium muted purple */
+   --rose-pale:  #EDE8F5;
    
-   --gold:       #b5853a;
-   --gold-pale:  #fdf4e3;
+   --gold: #4A3B6E
+   --gold-pale:  #D8D0ED;
 
   /* Fonts */
   --f-serif:  'Lora', Georgia, serif;
