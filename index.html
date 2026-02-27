@@ -128,6 +128,18 @@
     .exp-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
 
+     /* ── EDUCATION ── */
+    .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .exp-item {}
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .25rem; flex-wrap: wrap; }
+    .exp-role { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); }
+    .exp-date { font-size: .78rem; color: var(--ink-3); white-space: nowrap; }
+    .exp-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
+    .exp-adv { font-size: .82rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
+    .exp-bullets { display: flex; flex-direction: column; gap: .5rem; }
+    .exp-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
+    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
+
     /* ── PUBLICATIONS ── */
     .pub-year { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-top: 2rem; margin-bottom: .85rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
     .pub-year:first-child { margin-top: 0; }
@@ -315,6 +327,28 @@
           <ul class="exp-bullets">
             <li>Studied how social media feed bias affects voting preferences of undecided voters; assisted with literature review, statistical analysis, and manuscript preparation.</li>
             <li>Developed participant recruitment campaigns for online behavioral surveys.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+    
+    <!-- EDUCATION -->
+    <section id="education" class="reveal">
+      <span class="sec-label">Education</span>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">BS, Cognitive Science with Neuroscience Specialization</span>
+            <span class="exp-date">September 2019 - December 2022</span>
+          </div>
+          <div class="exp-org">University of California, San Diego</div>
+          <div class="exp-adv">Cum Laude</div>
+          <ul class="exp-bullets">
+            <li>History minor! Emphasis on the Americas.</li>
+            <li></li>
+          
           </ul>
         </div>
 
@@ -512,7 +546,7 @@
     <!-- CONTACT -->
     <section id="contact" class="reveal">
       <span class="sec-label">Contact</span>
-      <p class="contact-text">Feel free to reach out about research, collaboration, or anything related to developmental cognitive neuroscience.</p>
+      <p class="contact-text">Feel free to reach out about research, work, and collaboration.</p>
       <a href="mailto:christinatyagi@gmail.com" class="contact-email">christinatyagi@gmail.com</a>
     </section>
 
