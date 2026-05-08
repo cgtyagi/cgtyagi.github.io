@@ -35,7 +35,7 @@
 
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
+    html { font-size: 20px; scroll-behavior: smooth; }
     body { 
       font-family: var(--sans); 
       background: var(--bg); 
@@ -98,7 +98,7 @@
     }
     .nav-name { 
       font-family: var(--mono); 
-      font-size: .85rem; 
+      font-size: 1rem; 
       font-weight: 500; 
       white-space: nowrap; 
       margin-right: 2rem;
@@ -110,7 +110,7 @@
     }
     .nav-links { display: flex; gap: .5rem; }
     .nav-links a {
-      font-size: .75rem; 
+      font-size: .9rem; 
       font-weight: 500; 
       letter-spacing: .08em; 
       text-transform: uppercase;
@@ -384,9 +384,9 @@
     .exp-item {}
     .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .25rem; flex-wrap: wrap; }
     .exp-role { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); }
-    .exp-date { font-size: .78rem; color: var(--ink-3); white-space: nowrap; }
-    .exp-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
-    .exp-adv { font-size: .82rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
+    .exp-date { font-size: .88rem; color: var(--ink-3); white-space: nowrap; }
+    .exp-org { font-size: .92rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
+    .exp-adv { font-size: .97rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
     .exp-bullets { display: flex; flex-direction: column; gap: .5rem; }
     .exp-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
@@ -396,9 +396,9 @@
     .exp-item {}
     .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .25rem; flex-wrap: wrap; }
     .exp-role { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); }
-    .exp-date { font-size: .78rem; color: var(--ink-3); white-space: nowrap; }
-    .exp-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
-    .exp-adv { font-size: .82rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
+    .exp-date { font-size: .88rem; color: var(--ink-3); white-space: nowrap; }
+    .exp-org { font-size: .92rem; color: var(--green); font-weight: 500; margin-bottom: .2rem; }
+    .exp-adv { font-size: .97rem; color: var(--ink-3); font-style: italic; margin-bottom: .85rem; }
     .exp-bullets { display: flex; flex-direction: column; gap: .5rem; }
     .exp-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
     .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
@@ -419,7 +419,7 @@
     .pub-text { font-size: .88rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; }
     .pub-text strong { color: var(--ink); font-weight: 500; }
     .pub-text em { font-style: italic; }
-    .pub-doi { display: inline-block; margin-top: .2rem; font-size: .78rem; color: var(--ink-3); transition: color .15s; }
+    .pub-doi { display: inline-block; margin-top: .2rem; font-size: .88rem; color: var(--ink-3); transition: color .15s; }
     .pub-doi:hover { color: var(--green); }
 
     /* ── PRESENTATIONS ── */
@@ -429,18 +429,18 @@
     .pres-yr { font-size: .8rem; color: var(--ink-3); flex-shrink: 0; padding-top: .15rem; width: 36px; }
     .pres-body { flex: 1; }
     .pres-venue { display: block; font-size: .72rem; color: var(--green); letter-spacing: .04em; margin-bottom: .3rem; }
-    .pres-text { font-size: .88rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; }
+    .pres-text { font-size: .92rem; color: var(--ink-2); line-height: 1.65; font-weight: 300; }
     .pres-text strong { color: var(--ink); font-weight: 500; }
     .pres-text em { font-style: italic; }
-    .pres-link { display: inline-block; margin-top: .25rem; font-size: .78rem; color: var(--ink-3); transition: color .15s; }
+    .pres-link { display: inline-block; margin-top: .25rem; font-size: .92rem; color: var(--ink-3); transition: color .15s; }
     .pres-link:hover { color: var(--green); }
 
     /* ── MENTORING ── */
     .mentor-list { display: flex; flex-direction: column; gap: 2rem; }
     .mentor-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .2rem; }
     .mentor-role { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; }
-    .mentor-date { font-size: .78rem; color: var(--ink-3); }
-    .mentor-org { font-size: .88rem; color: var(--green); font-weight: 500; margin-bottom: .75rem; }
+    .mentor-date { font-size: .92rem; color: var(--ink-3); }
+    .mentor-org { font-size: .92rem; color: var(--green); font-weight: 500; margin-bottom: .75rem; }
     .mentor-bullets { display: flex; flex-direction: column; gap: .45rem; }
     .mentor-bullets li { font-size: .9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; padding-left: 1.1rem; position: relative; }
     .mentor-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-3); }
@@ -448,7 +448,7 @@
     /* ── SKILLS ── */
     .skill-rows { display: flex; flex-direction: column; gap: 1rem; }
     .skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; align-items: baseline; }
-    .skill-cat { font-size: .78rem; font-weight: 500; letter-spacing: .04em; color: var(--ink-3); }
+    .skill-cat { font-size: .92rem; font-weight: 500; letter-spacing: .04em; color: var(--ink-3); }
     .skill-items { font-size: .9rem; color: var(--ink-2); font-weight: 300; line-height: 1.6; }
 
     /* ── CONTACT ── */
@@ -458,7 +458,7 @@
 
     /* ── FOOTER ── */
     footer { max-width: calc(var(--max) + 4rem); margin: 0 auto; padding: 2rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
-    footer p { font-size: .78rem; color: var(--ink-3); }
+    footer p { font-size: .92rem; color: var(--ink-3); }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
