@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="christina tyagi — phd student @ ohio state university" />
+  <meta name="description" content="PhD student @ The Ohio State University" />
   <title>christina tyagi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +33,7 @@
 
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 20px; scroll-behavior: smooth; }
+    html { font-size: 16px; scroll-behavior: smooth; }
     body { 
       font-family: var(--sans); 
       background: var(--bg); 
@@ -463,25 +463,278 @@
     .reveal.in { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 620px) {
-      main { padding: 0 1.25rem; }
-      .nav-inner { padding: 0 1.25rem; }
-      footer { padding: 1.5rem 1.25rem; }
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .skill-row { grid-template-columns: 1fr; gap: .3rem; }
-      .pres { flex-direction: column; gap: .4rem; }
-      .pres-yr { width: auto; }
-      .hero-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .hero-image {
-        max-width: 200px;
-        margin: 0 auto;
-      }
-    }
+@media (max-width: 620px) {
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  :root {
+    --nav-h: 60px;
+  }
+
+  .nav-inner {
+    padding: 0 1rem;
+  }
+
+  .nav-name {
+    font-size: .9rem;
+    margin-right: 0;
+  }
+
+  .nav-toggle {
+    padding: 10px;
+    margin-right: -10px;
+  }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    padding: .75rem 1rem 1.25rem;
+  }
+
+  .mobile-menu a {
+    padding: .8rem .5rem;
+    font-size: .95rem;
+    color: var(--ink);
+  }
+
+  /* MAIN CONTENT */
+  main {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  section {
+    padding: 3.5rem 0;
+  }
+
+  /* HERO */
+  #about {
+    padding-top: calc(var(--nav-h) + 2.5rem);
+    padding-bottom: 3.5rem;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .hero-image {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+
+  .hero-name {
+    font-size: clamp(2.4rem, 13vw, 3.25rem);
+    line-height: 1.05;
+    margin-bottom: .8rem;
+  }
+
+  .hero-sub {
+    font-size: .72rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: none;
+    margin-bottom: 1.75rem;
+  }
+
+  /* BUTTONS */
+  .hero-content > div,
+  #contact > div {
+    flex-wrap: wrap;
+    gap: .65rem !important;
+  }
+
+  .hero-link {
+    min-height: 44px;
+    padding: .65rem 1rem;
+    font-size: .85rem;
+  }
+
+  /* SECTION HEADINGS */
+  .sec-label {
+    font-size: .65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* INTERESTS */
+  .interests {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  .interest {
+    padding: 1rem;
+    gap: .75rem;
+  }
+
+  .interest p {
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+
+  /* EXPERIENCE / EDUCATION */
+  .exp-list {
+    gap: 2rem;
+  }
+
+  .exp-header,
+  .mentor-header {
+    display: block;
+  }
+
+  .exp-role,
+  .mentor-role {
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: .25rem;
+  }
+
+  .exp-date,
+  .mentor-date {
+    display: block;
+    font-size: .8rem;
+    margin-bottom: .4rem;
+  }
+
+  .exp-org,
+  .mentor-org {
+    font-size: .88rem;
+    line-height: 1.5;
+  }
+
+  .exp-adv {
+    font-size: .88rem;
+  }
+
+  .exp-bullets li,
+  .mentor-bullets li {
+    font-size: .9rem;
+    line-height: 1.65;
+    padding-left: 1rem;
+  }
+
+  /* PUBLICATIONS */
+  .pub {
+    gap: .6rem;
+  }
+
+  .pub-badge {
+    font-size: .58rem;
+    padding: 3px 5px;
+  }
+
+  .pub-text {
+    font-size: .88rem;
+    line-height: 1.6;
+    min-width: 0;
+  }
+
+  .pub-doi {
+    font-size: .8rem;
+    overflow-wrap: anywhere;
+  }
+
+  .pub-year {
+    margin-top: 1.75rem;
+  }
+
+  /* PRESENTATIONS */
+  .pres {
+    display: block;
+    padding: 1rem 0;
+  }
+
+  .pres-yr {
+    display: block;
+    width: auto;
+    font-size: .78rem;
+    margin-bottom: .25rem;
+  }
+
+  .pres-venue {
+    font-size: .68rem;
+    line-height: 1.5;
+  }
+
+  .pres-text {
+    font-size: .9rem;
+    line-height: 1.65;
+  }
+
+  .pres-link {
+    font-size: .85rem;
+  }
+
+  /* MENTORING */
+  .mentor-list {
+    gap: 2rem;
+  }
+
+  /* SKILLS */
+  .skill-rows {
+    gap: 1.25rem;
+  }
+
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: .2rem;
+  }
+
+  .skill-cat {
+    font-size: .82rem;
+    font-weight: 600;
+  }
+
+  .skill-items {
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact-text {
+    font-size: .95rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 1rem;
+  }
+
+  footer p {
+    font-size: .8rem;
+  }
+
+  /* PDF */
+  .section-image-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .section-image-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+  }
+}
 
   </style>
 </head>
@@ -566,18 +819,30 @@
     </section>
 
     <!-- SPOTLIGHT -->
-      <section id="spotlight" class="reveal">
-        <span class="sec-label">Spotlight</span>
-      <p class="hero-bio">SfN 2025 poster</p>
-      <div class="section-image-wrap">
-      <iframe 
-      src="sfn.pdf" 
-      width="100%" 
-      height="600px"
-      style="border: none; border-radius: 10px;">
+   <section id="spotlight" class="reveal">
+    <span class="sec-label">Spotlight</span>
+  
+    <p class="hero-bio">SfN 2025 poster</p>
+  
+    <a
+      href="sfn.pdf"
+      target="_blank"
+      rel="noopener"
+      class="hero-link"
+      style="margin-bottom: 1rem;"
+    >
+      Open poster ↗
+    </a>
+  
+    <div class="section-image-wrap">
+      <iframe
+        src="sfn.pdf"
+        title="SfN 2025 poster"
+        loading="lazy">
       </iframe>
-      </div>
-    </section>
+    </div>
+  </section>
+
 
     <!-- RESEARCH EXPERIENCE -->
     <section id="research" class="reveal">
@@ -894,3 +1159,5 @@
 
 </body>
 </html>
+
+
