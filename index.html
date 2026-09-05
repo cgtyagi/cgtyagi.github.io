@@ -98,8 +98,20 @@
     .nav-links a:hover, .nav-links a.active { color: var(--purple); background: var(--purple-bg); }
 
     /* mobile nav */
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .25s, opacity .2s; }
+    :root {
+  --nav-h: 60px;
+  }
+  
+  .nav-links {
+    display: none;  /* Add this line */
+  }
+    .nav-toggle {
+    display: flex;  /* Add this line */
+    padding: 10px;
+    margin-right: 0;
+    margin-left: auto;
+    }
+    .nav-toggle span { display: flex; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .25s, opacity .2s; }
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
