@@ -266,12 +266,21 @@
     footer { max-width: calc(var(--max) + 4rem); margin: 0 auto; padding: 2rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
     footer p { font-size: .92rem; color: var(--ink-3); }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 1; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+     /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 620px) {
+        main { padding: 0 1.25rem; }
+      .nav-inner { padding: 0 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .skill-row { grid-template-columns: 1fr; gap: .3rem; }
+      .pres { flex-direction: column; gap: .4rem; }
+      .pres-yr { width: auto; }
+    }
 
     html {
     font-size: 16px;
