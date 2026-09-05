@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Christina Tyagi — Neuroscience Researcher, Stanford University" />
+  <meta name="description" content="Christina Tyagi — PhD Student, The Ohio State University" />
   <title>Christina Tyagi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,6 +41,29 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+    /* Animated gradient background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(123, 97, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 245, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 0, 107, 0.06) 0%, transparent 50%);
+      animation: gradientShift 20s ease infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(5%, -5%) rotate(120deg); }
+      66% { transform: translate(-5%, 5%) rotate(240deg); }
+    }
+
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
     ::selection { background: var(--green); color: #fff; }
@@ -49,7 +72,7 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      background: rgba(237, 232, 245, 0.95);
+      background: rgba(237, 232, 245, 0.2);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid transparent;
       z-index: 100;
