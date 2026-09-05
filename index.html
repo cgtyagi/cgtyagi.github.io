@@ -72,74 +72,30 @@
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
     ::selection { background: var(--accent-1); color: var(--bg); }
-
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--nav-h);
-    
-      /* light + transparent */
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: rgba(237, 232, 245, 0.7);  /* Changed from 1 to 0.7 for transparency */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    z-index: 100;
+    transition: background .3s, border-color .2s;  /* Added background transition */
     }
-    
-     nav.scrolled { border-bottom-color: var(--border); }
+    nav.scrolled { border-bottom-color: var(--border); }
     .nav-inner {
       max-width: calc(var(--max) + 4rem);
       margin: 0 auto; padding: 0 2rem;
       height: 100%; display: flex; align-items: center; justify-content: space-between;
     }
-    
-    /* Name stays on the left */
-        .nav-name { font-family: var(--serif); font-size: .95rem; font-weight: 500; white-space: nowrap; margin-right: 2rem; }
+    .nav-name { font-family: var(--serif); font-size: .95rem; font-weight: 500; white-space: nowrap; margin-right: 2rem; }
     .nav-links { display: flex; gap: .1rem; }
     .nav-links a {
       font-size: .78rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
       color: var(--ink-3); padding: .4rem .6rem; border-radius: 5px;
       transition: color .15s, background .15s;
     }
-    
-    /* Navigation is genuinely centered */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .25rem;
-    }
-    
-    .nav-links a {
-      font-size: .78rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    
-      color: #555;
-      padding: .45rem .7rem;
-      border-radius: 6px;
-    
-      transition: color .2s, background .2s;
-    }
-    
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent-1);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-
-    }
-
-    .nav-links a.active::before {
-      width: 60%;
-    }
+    .nav-links a:hover, .nav-links a.active { color: var(--purple); background: var(--purple-bg); }
 
     /* mobile nav */
     .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -155,7 +111,7 @@
     }
     .mobile-menu.open { display: block; }
     .mobile-menu a { display: block; padding: .55rem .5rem; font-size: .9rem; color: var(--ink-2); border-radius: 5px; transition: background .15s; }
-    .mobile-menu a:hover { background: var(--green-bg); color: var(--green); }
+    .mobile-menu a:hover { background: var(--purple-bg); color: var(--purple); }
     @keyframes fadeDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 
 
