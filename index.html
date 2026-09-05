@@ -310,6 +310,23 @@
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    /* Add before RESPONSIVE section */
+    .section-image-wrap {
+      width: 100%;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    
+    .section-image-wrap iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: block;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 620px) {
         main { padding: 0 1.25rem; }
