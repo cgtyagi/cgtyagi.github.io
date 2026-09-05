@@ -140,6 +140,46 @@
     .hero-bio strong { color: var(--ink); font-weight: 500; }
     .hero-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .875rem; font-weight: 500; color: var(--purple); border: 1.5px solid var(--purple); padding: .55rem 1.1rem; border-radius: 6px; transition: background .15s, color .15s; }
     .hero-link:hover { background: var(--purple); color: #fff; }
+    /* Add after .hero-link:hover */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .hero-image {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    
+    .hero-content {
+      flex: 1;
+    }
+
+  /* Option A: Disable on mobile */
+  @media (max-width: 620px) {
+    /* Disable heavy animation on mobile */
+    body::before {
+      display: none;
+    }
+    
+    main { padding: 0 1.25rem; }
+    .nav-inner { padding: 0 1.25rem; }
+    footer { padding: 1.5rem 1.25rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .skill-row { grid-template-columns: 1fr; gap: .3rem; }
+    .pres { flex-direction: column; gap: .4rem; }
+    .pres-yr { width: auto; }
+  }
     
     /* ── INTERESTS ── */
     .interests { 
